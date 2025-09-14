@@ -21,7 +21,7 @@ A Front-End social media web application built as part of the JavaScript 2 cours
 
 ### Clone the repo:
 
-git clone https://github.com/camiP89/FED2-JS2-CA/
+git clone https://github.com/camiP89/FED2-JS2-CA.git
 
 ### Install dependencies:
 

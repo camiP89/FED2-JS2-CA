@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Register a new account on CHATTA Links, a social media app built with JavaScript. Create your profile, connect with users, and start sharing posts."
+    />
+    <title>CHATTA Links | Register</title>
+    <script
+      src="https://kit.fontawesome.com/bfed71705b.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="../assets/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="../assets/favicon-16x16.png"
+    />
+    <link rel="manifest" href="/site.webmanifest" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,100..700;1,100..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nixie+One&family=Raleway:ital,wght@0,100..900;1,100..900&family=Taviraj:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Tillana:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="../styles/styles.css" />
+    <link rel="stylesheet" href="../styles/register.css" />
+    <script type="module" src="../scripts/register.mjs"></script>
+  </head>
+  <body>
+    <header>
+      <div class="mobile-header">
+        <label for="menu-checkbox" class="hamburger-icon">
+          <i class="fa-solid fa-bars"></i>
+        </label>
+      </div>
+      <input type="checkbox" id="menu-checkbox" />
+      <nav id="nav-container"></nav>
+      <div class="user-info">
+        <p id="welcome-text"></p>
+        <button id="logout-button" style="display: none">Logout</button>
+      </div>
+    </header>
+    <div class="logo-container">
+      <a href="index.html">
+        <img
+          src="/assets/chatta-links-logo.png"
+          alt="CHATTA Links logo"
+          class="logo"
+        />
+      </a>
+    </div>
+    <main>
+      <h1 class="heading-register"></h1>
+      <div id="form-container"></div>
+    </main>
+    <footer>
+      <div class="logo-container-footer">
+        <a href="index.html" class="footer-logo">
+          <img
+            src="/assets/chatta-links-logo.png"
+            alt="CHATTA Links logo"
+            class="logo-footer"
+          />
+        </a>
+      </div>
+      <div class="footer-section">
+        <div class="footer-links">
+          <a href="/index.html">Home</a>
+          <a href="terms/index.html">Terms</a>
+          <a href="privacy/index.html">Privacy</a>
+        </div>
+        <p class="follow-p">Follow CHATTA Links at:</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com" aria-label="Link to Facebook">
+            <i class="fa-brands fa-square-facebook"></i>
+          </a>
+          <a href="https://www.instagram.com" aria-label="Link to Instagram">
+            <i class="fa-brands fa-square-instagram"></i>
+          </a>
+          <a href="https://www.youtube.com" aria-label="Link to YouTube">
+            <i class="fa-brands fa-square-youtube"></i>
+          </a>
+          <a href="https://www.tiktok.com" aria-label="Link to TikTok">
+            <i class="fa-brands fa-tiktok"></i>
+          </a>
+          <a href="https://x.com" aria-label="Link to x (formerly Twitter)">
+            <i class="fa-brands fa-square-x-twitter"></i>
+          </a>
+        </div>
+        <p class="copyright">Copyright &copy; CHATTALinksLtd 2025</p>
+      </div>
+    </footer>
+  </body>
+</html>
