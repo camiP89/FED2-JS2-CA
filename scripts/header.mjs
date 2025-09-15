@@ -8,9 +8,9 @@ export function createHeader() {
 
   if (navContainer) {
     navContainer.innerHTML = `
-    <a href="/profile-page/index.html">My Profile</a>
+    <a href="/profile/index.html">My Profile</a>
     <a href="/search/index.html">Search</a>
-    <a href="${userName && token ? "/post/index.html" : "post/index.html"}">All Posts</a>
+    <a href="${userName && token ? "/posts/index.html" : "/posts/index.html"}">All Posts</a>
     ${
       !(userName && token)
         ? `

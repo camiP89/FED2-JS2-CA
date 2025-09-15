@@ -76,7 +76,7 @@ loginForm.addEventListener("submit", async (event) => {
       localStorage.setItem("userEmail", result.data.email);
 
       alert(`Welcome ${result.data.name}!`);
-      window.location.href = "/profile-page/index.html";
+      window.location.href = "/profile/index.html";
     } else {
       throw new Error("Login failed: No data in response.");
     }

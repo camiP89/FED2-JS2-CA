@@ -7,7 +7,7 @@ export const LOGIN_ENDPOINT = `${API_BASE_URL}/auth/login`;
 export const CREATE_API_KEY_ENDPOINT = `${API_BASE_URL}/auth/create-api-key`;
 
 //Noroff API key - from API key tool
-export const NOROFF_API_KEY = "5ff7dccd-ffb7-4829-b605-841c60f9ad68";
+export const NOROFF_API_KEY = "e3f43060-ff38-4fd8-8128-f7cc02b4a5a9";
 
 //Posts Endpoints
 export const ALL_POSTS_ENDPOINT = `${API_BASE_URL}/social/posts`;
