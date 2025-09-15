@@ -1,0 +1,36 @@
+//Noroff Base Url
+export const API_BASE_URL = "https://v2.api.noroff.dev";
+
+//Auth
+export const REGISTER_ENDPOINT = `${API_BASE_URL}/auth/register`;
+export const LOGIN_ENDPOINT = `${API_BASE_URL}/auth/login`;
+export const CREATE_API_KEY_ENDPOINT = `${API_BASE_URL}/auth/create-api-key`;
+
+//Noroff API key - from API key tool
+export const NOROFF_API_KEY = "5ff7dccd-ffb7-4829-b605-841c60f9ad68";
+
+//Posts Endpoints
+export const ALL_POSTS_ENDPOINT = `${API_BASE_URL}/social/posts`;
+export const getSinglePost = (postId) =>
+  `${API_BASE_URL}/social/posts/${postId}`;
+export const deletePost = (postId) => `${API_BASE_URL}/social/posts/${postId}`;
+export const updatePost = (postId) => `${API_BASE_URL}/social/posts/${postId}`;
+export const POSTS_FROM_FOLLOWING = `${API_BASE_URL}/social/posts/following`;
+export const searchPosts = (query) =>
+  `${API_BASE_URL}/social/posts/search?q=${query}`;
+export const createPostEndpoint = `${API_BASE_URL}/social/posts`;
+
+//Profiles Endpoints
+export const ALL_PROFILES_ENDPOINT = `${API_BASE_URL}/social/profiles`;
+export const getSingleProfile = (username) =>
+  `${API_BASE_URL}/social/profiles/${username}`;
+export const getPostsByProfile = (username) =>
+  `${API_BASE_URL}/social/profiles/${username}/posts`;
+export const followProfile = (username) =>
+  `${API_BASE_URL}/social/profiles/${username}/follow`;
+export const unfollowProfile = (username) =>
+  `${API_BASE_URL}/social/profiles/${username}/unfollow`;
+export const searchProfiles = (query) =>
+  `${API_BASE_URL}/social/profiles/search?q=${query}`;
+export const updateProfile = (username) =>
+  `${API_BASE_URL}/social/profiles/${username}`;

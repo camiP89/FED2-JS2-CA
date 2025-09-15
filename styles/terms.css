@@ -1,0 +1,30 @@
+@import url("./variables.css");
+
+.terms-section {
+  width: 100%;
+  padding: 30px;
+  margin: 20px;
+  width: calc(100% - 40px);
+  background-color: var(--orange);
+  border: solid 5px var(--black);
+}
+
+.date {
+  font-weight: 500;
+  font-size: 0.6;
+  margin-bottom: 20px;
+}
+
+@media (min-width: 550px) {
+  .terms-section {
+    margin: 30px 50px;
+    width: calc(100% - 100px);
+  }
+}
+
+@media (min-width: 900px) {
+  .terms-section {
+    margin: 30px 100px;
+    width: calc(100% - 200px);
+  }
+}
