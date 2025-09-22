@@ -1,19 +1,19 @@
 import { deletePost } from "./deletePost.mjs";
-import { renderReactions } from "./reactions.mjs";
+import { getFromLocalStorage } from "./utils.mjs";
 
 export function createSinglePostHtml(
   post,
   isLoggedIn = false,
-  profileUserName = ""
+  profileUserName = null
 ) {
   const postListItem = document.createElement("div");
   postListItem.classList.add("post-wrapper");
   postListItem.id = `post-${post.id}`;
 
-  const authorName = post.author?.name ?? "Unknown Author";
-  const isOwnPost = post.author?.name
-    ? post.author.name === profileUserName
-    : true;
+  const authorName = post.author?.name || profileUserName || "Unknown Author";
+
+  const loggedInUser = getFromLocalStorage("userName");
+  const isOwnPost = loggedInUser === authorName;
 
   const postLink = document.createElement("a");
   postLink.href = `../posts/post.html?id=${post.id}&user=${authorName}`;
@@ -57,23 +57,6 @@ export function createSinglePostHtml(
     contentContainer.appendChild(dateElement);
   }
 
-  const reactionsContainer = document.createElement("div");
-  reactionsContainer.classList.add("reactions-container");
-  renderReactions(post.id, isLoggedIn, reactionsContainer);
-  contentContainer.appendChild(reactionsContainer);
-
-  if ((post._count?.reactions ?? 0) > 0 || (post._count?.comments ?? 0) > 0) {
-    const reactionsElement = document.createElement("p");
-    reactionsElement.classList.add("post-reactions");
-    reactionsElement.textContent = `Reactions: ${post._count?.reactions ?? 0}`;
-    contentContainer.appendChild(reactionsElement);
-
-    const commentsElement = document.createElement("p");
-    commentsElement.classList.add("post-comments");
-    commentsElement.textContent = `Comments: ${post._count?.comments ?? 0}`;
-    contentContainer.appendChild(commentsElement);
-  }
-
   if (isLoggedIn && isOwnPost) {
     const buttonContainer = document.createElement("div");
     buttonContainer.classList.add("post-action-buttons");
@@ -105,11 +88,13 @@ export function createSinglePostHtml(
       }
     });
 
-    buttonContainer.append(editButton, deleteButton);
+    buttonContainer.appendChild(editButton);
+    buttonContainer.appendChild(deleteButton);
     contentContainer.appendChild(buttonContainer);
   }
 
-  postLink.append(postImage, contentContainer);
+  postLink.appendChild(postImage);
+  postLink.appendChild(contentContainer);
   postListItem.appendChild(postLink);
 
   return postListItem;

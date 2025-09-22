@@ -3,7 +3,6 @@ import { createPostDetailsHtml } from "./postDetailsHtml.mjs";
 import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
 import { createHeader } from "./header.mjs";
 import { getAuthHeaders } from "./fetchData.mjs";
-import { loadComments } from "./comments.mjs";
 
 createHeader();
 
@@ -39,7 +38,7 @@ export async function mainId() {
     return;
   }
 
-  const url = `${API_BASE_URL}/social/posts/${postId}`;
+  const url = `${API_BASE_URL}/social/posts/${postId}?_author=true`;
 
   showSpinner();
 
@@ -60,14 +59,9 @@ export async function mainId() {
     const singlePostHtml = createPostDetailsHtml(postData);
     postDetailsContainer.append(singlePostHtml);
 
-    const commentsContainer = document.createElement("div");
-    commentsContainer.id = "comments-container";
-    postDetailsContainer.append(commentsContainer);
-
     const isLoggedIn = !!localStorage.getItem("accessToken");
     const userName = localStorage.getItem("userName");
 
-    loadComments(postId, "comments-container", isLoggedIn, userName);
   } catch (error) {
     console.error("Error fetching post details:", error);
     postDetailsContainer.innerHTML = "<p>Error loading post.</p>";

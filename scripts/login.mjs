@@ -1,5 +1,6 @@
 import { loginUser } from "./fetchData.mjs";
 import { createHeader } from "./header.mjs";
+import { addToLocalStorage } from "./utils.mjs";
 
 createHeader();
 
@@ -71,9 +72,9 @@ loginForm.addEventListener("submit", async (event) => {
     const result = await loginUser(email, password);
 
     if (result?.data) {
-      localStorage.setItem("accessToken", result.data.accessToken);
-      localStorage.setItem("userName", result.data.name);
-      localStorage.setItem("userEmail", result.data.email);
+      addToLocalStorage("accessToken", result.data.accessToken);
+      addToLocalStorage("userName", result.data.name);
+      addToLocalStorage("userEmail", result.data.email);
 
       alert(`Welcome ${result.data.name}!`);
       window.location.href = "/profile/index.html";

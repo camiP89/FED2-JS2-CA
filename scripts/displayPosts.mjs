@@ -10,7 +10,7 @@ export function createPostsHtml(
 
   if (!postsContainer) return;
 
-  if (!Array.isArray(posts) || posts.length === 0) {
+  if (!Array.isArray(posts)) {
     postsContainer.innerHTML = "<p>Could not load posts.</p>";
     return;
   }

@@ -1,7 +1,6 @@
 import {
   ALL_POSTS_ENDPOINT,
   getSinglePost,
-  createPostEndpoint,
   API_BASE_URL,
   REGISTER_ENDPOINT,
   LOGIN_ENDPOINT,
@@ -137,6 +136,8 @@ export async function fetchAllPosts() {
 }
 
 export async function fetchSinglePostById(postId) {
+  if (!postId) throw new Error("Post ID is required");
+
   try {
     showSpinner();
     const response = await fetch(getSinglePost(postId), {
@@ -184,15 +185,19 @@ export async function fetchAllProfiles() {
 export async function fetchSingleProfile(username) {
   try {
     showSpinner();
-    const response = await fetch(getSingleProfile(username), {
-      headers: getAuthHeaders(),
-    });
+    const response = await fetch(
+      `${getSingleProfile(username)}?_posts=true&_followers=true&following=true`,
+      {
+        headers: getAuthHeaders(),
+      }
+    );
 
     if (!response.ok) {
       throw new Error(`Failed to fetch profile: ${response.statusText}`);
     }
 
     const result = await response.json();
+    console.log("Fetched profile data:", result);
     return result.data;
   } catch (error) {
     console.error("Error fetching profile:", error.message);
@@ -222,21 +227,44 @@ export async function createPost(title, body, tags, mediaUrl, mediaAlt) {
       alt: mediaAlt,
     },
   };
+
   try {
     showSpinner();
-    const response = await fetch(createPostEndpoint, {
+    const response = await fetch(url, {
       method: "POST",
       headers: getAuthHeaders(),
       body: JSON.stringify(postData),
     });
-    const data = await response.json();
+
     if (!response.ok) {
-      console.error("Error creating post:", data);
-      throw new Error(data.errors?.[0]?.message || "Unknown error");
+      const errorData = await response.json();
+      throw new Error(errorData.errors?.[0]?.message || "Post creation failed");
     }
-    return data;
+    const data = await response.json();
+    return data.data;
   } catch (error) {
     console.error("Post creation failed:", error.message);
+    throw error;
+  } finally {
+    hideSpinner();
+  }
+}
+
+export async function fetchPostsByProfile(userName) {
+  const url =`${API_BASE_URL}/social/profiles/${userName}/posts?_author=true&_comments=true&_reactions=true`;
+  try {
+    showSpinner();
+    const response = await fetch(url, {
+      headers: getAuthHeaders(),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to fetch posts: ${response.status}`);
+    }
+    const data = await response.json();
+    console.log("Fetched posts for profile:", data);
+    return data.data;
+  } catch (error) {
+    console.error("Error fetching profile posts:", error.message);
     throw error;
   } finally {
     hideSpinner();

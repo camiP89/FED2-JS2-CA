@@ -1,63 +1,65 @@
-import { renderReactions } from "./reactions.mjs";
-
 export function createPostDetailsHtml(postData, isLoggedIn = false) {
- const singlePostContainer = document.createElement("article");
- singlePostContainer.classList.add("single-post-container");
+  const singlePostContainer = document.createElement("article");
+  singlePostContainer.classList.add("single-post-container");
 
- const { title, body, media, tags, created, author} = postData;
+  const { title, body, media, tags, created, author } = postData;
 
- const postTitle = document.createElement("h2");
- postTitle.textContent = title || "Untitled Post";
- postTitle.classList.add("post-title");
+  const authorName = author?.name ?? "Unknown";
+  const authorUserName = author?.name ?? null;
 
- const postImage = document.createElement("img");
- postImage.classList.add("post-image");
- if (media?.url) {
-   postImage.src = media.url;
-   postImage.alt = media.alt || "Post Image";
+  const authorElement =document.createElement("p");
+  authorElement.classList.add("post-author");
 
-   postImage.width = 1200;
-   postImage.height = 500;
-   postImage.setAttribute("decoding", "async");
-   postImage.setAttribute("fetchPriority", "high");
- } else {
-   console.error("Invalid or missing image URL:", media);
- }
+  if (authorUserName) {
+    authorElement.innerHTML = `
+    Profile: <a href="../profile/index.html?username=${encodeURIComponent(authorUserName)}">
+      ${authorName}
+    </a>
+  `;
+  } else {
+    authorElement.textContent = "Profile: unknown Author";
+  }
 
- const postCreated = document.createElement("p");
- postCreated.innerHTML = `<strong>Posted:</strong> ${new Date(created).toLocaleDateString()}`;
- postCreated.classList.add("post-created");
+  const postTitle = document.createElement("h2");
+  postTitle.textContent = title || "Untitled Post";
+  postTitle.classList.add("post-title");
 
- const postAuthor = document.createElement("p");
- postAuthor.innerHTML = `<strong>Author:</strong> ${author?.name || "Unknown"}`;
- postAuthor.classList.add("post-author");
+  const postImage = document.createElement("img");
+  postImage.classList.add("post-image");
+  if (media?.url) {
+    postImage.src = media.url;
+    postImage.alt = media.alt || "Post Image";
+    postImage.setAttribute("decoding", "async");
+    postImage.setAttribute("fetchPriority", "high");
+  } else {
+    console.error("Invalid or missing image URL:", media);
+  }
 
- const postBody = document.createElement("p");
- postBody.textContent = body || "No content available";
- postBody.classList.add("post-body");
+  const postCreated = document.createElement("p");
+  postCreated.innerHTML = `<strong>Posted:</strong> ${new Date(created).toLocaleDateString()}`;
+  postCreated.classList.add("post-created");
 
-const postTags = document.createElement("p");
-if (tags?.length) {
-  postTags.innerHTML = `<strong>Tags:</strong> ${tags.join(", ")};`;
-  postTags.classList.add("post-tags");
-}
+  const postBody = document.createElement("p");
+  postBody.textContent = body || "No content available";
+  postBody.classList.add("post-body");
 
-const reactionsContainer = document.createElement("div");
-reactionsContainer.classList.add("reactions-container");
-renderReactions(postData.id, isLoggedIn, reactionsContainer);
+  const postTags = document.createElement("p");
+  if (tags?.length) {
+    postTags.innerHTML = `<strong>Tags:</strong> ${tags.join(", ")};`;
+    postTags.classList.add("post-tags");
+  }
 
-singlePostContainer.append(
-  postTitle,
-  postImage,
-  postAuthor,
-  postCreated,
-  postBody,
-  reactionsContainer
-);
+  singlePostContainer.append(
+    postTitle,
+    postImage,
+    authorElement,
+    postCreated,
+    postBody
+  );
 
-if (tags?.length) {
-  singlePostContainer.appendChild(postTags);
-}
+  if (tags?.length) {
+    singlePostContainer.appendChild(postTags);
+  }
 
-return singlePostContainer;
+  return singlePostContainer;
 }

@@ -1,0 +1,61 @@
+@import url('./variables.css');
+
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+}
+
+.container {
+  max-width: 100%;
+  margin: 20px 20px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+  background-color: var(--orange);
+  border: solid 5px var(--black);
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+label {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+input {
+  padding: 10px;
+  font-size: 1rem;
+  border: solid 4px var(--black);
+}
+
+textarea {
+ padding: 10px;
+ font-size: 1rem;
+ border: solid 5px var(--black);
+}
+
+@media (min-width: 550px) {
+ .container {
+   margin: 30px 50px 20px 50px;
+   width: calc(100% - 100px);
+ }
+}
+
+@media (min-width: 850px) {
+ .container {
+   margin: 30px 100px 20px 100px;
+   width: calc(100% - 200px);
+ }
+}
+
+@media (min-width: 950px) {
+ .container {
+   margin: 30px 170px 20px 170px;
+   width: calc(100% - 340px);
+ }
+}

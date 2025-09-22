@@ -19,7 +19,7 @@ async function main() {
   showSpinner();
 
   try {
-    const allPosts = await fetchAllPosts();
+    allPosts = await fetchAllPosts();
     createPostsHtml(allPosts);
   } catch (error) {
     const postContainer = document.getElementById("posts-container");

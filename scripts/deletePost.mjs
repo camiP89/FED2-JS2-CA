@@ -1,8 +1,9 @@
 import { API_BASE_URL } from "./constants.mjs";
 import { getAuthHeaders } from "./fetchData.mjs";
+import { getFromLocalStorage } from "./utils.mjs";
 
 export async function deletePost(postId) {
-  const token = localStorage.getItem("accessToken");
+  const token = getFromLocalStorage("accessToken");
 
   if (!token) {
     throw new Error("User is not authenticated.");
