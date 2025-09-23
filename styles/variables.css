@@ -2,7 +2,10 @@
   --background-all: #545353;
   --grey: #545353;
   --orange: #D48056;
+  --soft-orange: #D49A56;
+  --soft-white: #f5f5f5;
   --header-footer: rgba(0, 0, 0, 0.51);
+  --off-black:  rgba(0, 0, 0, 0.51);
   --black: #000;
   --white: #fff;
 }

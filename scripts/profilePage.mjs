@@ -1,18 +1,16 @@
+import { fetchProfile, updateProfile } from "./profileData.mjs";
+import { renderProfile, toggleEditForm } from "./profileView.mjs";
+import { getAuthHeaders } from "./fetchData.mjs";
+import { getFromLocalStorage } from "./utils.mjs";
+import { createHeader } from "./header.mjs";
+import { createPostsHtml } from "./displayPosts.mjs";
 import {
-  API_BASE_URL,
   getSingleProfile,
   getPostsByProfile,
 } from "./constants.mjs";
-import { addToLocalStorage, getFromLocalStorage } from "./utils.mjs";
-import { createPostsHtml } from "./displayPosts.mjs";
 import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
-import { createHeader } from "./header.mjs";
-import { getAuthHeaders } from "./fetchData.mjs";
-import {
-  followProfile,
-  unfollowProfile,
-  createFollowButtons,
-} from "./followUnfollow.mjs";
+import { updateFollowCounts } from "./followingCount.mjs";
+import { createFollowButtons } from "./CreateFollowingButtons.mjs";
 
 createHeader();
 
@@ -22,34 +20,35 @@ const loggedInUser = getFromLocalStorage("userName");
 const token = getFromLocalStorage("accessToken");
 
 const userName = viewedUser || loggedInUser;
-console.log("Fetching posts for user:", userName);
-console.log("Fetching from API URL:", getPostsByProfile(userName));
-
 const isLoggedIn = !!token;
 const isOwner = userName === loggedInUser;
-
-let profileData = {};
 
 const heading = document.querySelector("h1");
 if (heading) {
   heading.textContent = isOwner
     ? `${userName}'s Profile`
     : `${userName}'s Public Profile`;
-}
-
-if (heading) {
   const profileContainer = document.createElement("div");
   profileContainer.classList.add("profile-container");
 
-  const profileName = document.createElement("h2");
-  profileName.classList.add("profile-name");
-  profileContainer.appendChild(profileName);
+  const profileImgElement = document.createElement("img");
+  profileImgElement.classList.add("profile-avatar");
+  profileImgElement.src = "../assets/smiley.jpg";
+  profileImgElement.alt = `${userName}'s profile picture`;
+  profileContainer.appendChild(profileImgElement);
 
-  const profileImg = document.createElement("img");
-  profileImg.classList.add("profile-avatar");
-  profileImg.src = "../assets/smiley.jpg";
-  profileImg.alt = `${userName}'s profile picture`;
-  profileContainer.appendChild(profileImg);
+  let bioElement = document.querySelector(".bio-text");
+  if (!bioElement) {
+    bioElement = document.createElement("p");
+    bioElement.classList.add("bio-text");
+    profileContainer.appendChild(bioElement);
+  }
+  heading.insertAdjacentElement("afterend", profileContainer);
+
+  const profileData = await fetchProfile(userName);
+  renderProfile(profileData, profileImgElement, bioElement, userName);
+  createFollowButtons(profileData);
+  updateFollowCounts(profileData);
 
   if (isLoggedIn && isOwner) {
     const editButton = document.createElement("button");
@@ -58,7 +57,14 @@ if (heading) {
     profileContainer.appendChild(editButton);
 
     editButton.addEventListener("click", () =>
-      toggleEditForm(profileContainer, profileImg)
+      toggleEditForm(profileContainer, profileData, async (e, form) => {
+        e.preventDefault();
+        const avatarUrl = form.avatarUrl.value.trim();
+        const bio = form.bio.value.trim();
+        const updatedData = await updateProfile(userName, avatarUrl, bio);
+        renderProfile(updatedData, profileImgElement, bioElement);
+        form.remove();
+      })
     );
 
     const createButton = document.createElement("button");
@@ -67,123 +73,13 @@ if (heading) {
     createButton.addEventListener("click", () => {
       window.location.href = "../posts/create.html";
     });
-
-    heading.insertAdjacentElement("afterend", createButton);
-  }
-
-  heading.insertAdjacentElement("afterend", profileContainer);
-
-  loadProfile(profileImg);
-  loadPosts();
-}
-
-function toggleEditForm(container, profileImg) {
-  const existingForm = document.querySelector(".edit-profile-form");
-  if (existingForm) {
-    existingForm.remove();
-    return;
-  }
-
-  const form = document.createElement("form");
-  form.classList.add("edit-profile-form");
-  form.innerHTML = `
-  <label>
-      Avatar URL:
-      <input type="url" name="avatarUrl" placeholder="Enter new avatar URL"
-             value="${profileData.avatar?.url || ""}">
-    </label>
-    <label>
-      Bio:
-      <textarea name="bio" placeholder="Enter your bio">${profileData.bio || ""}</textarea>
-    </label>
-    <button type="submit">Save</button>
-  `;
-
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
-    const avatarUrl = form.avatarUrl.value.trim();
-    const bio = form.bio.value.trim();
-
-    try {
-      const response = await fetch(
-        `${API_BASE_URL}/social/profiles/${userName}`,
-        {
-          method: "PUT",
-          headers: getAuthHeaders(),
-          body: JSON.stringify({
-            avatar: avatarUrl
-              ? { url: avatarUrl, alt: `${userName}'s avatar` }
-              : undefined,
-            bio: bio || undefined,
-          }),
-        }
-      );
-
-      if (!response.ok) {
-        const err = await response.json();
-        throw new Error(err.errors?.[0]?.message || "Failed to update profile");
-      }
-
-      const data = await response.json();
-      profileData = data.data;
-
-      profileImg.src = profileData.avatar?.url || "../assets/smiley.jpg";
-      profileImg.alt =
-        profileData.avatar?.alt || `${userName}'s profile picture`;
-
-      const bioElement = document.querySelector(".bio-text");
-      if (bioElement) {
-        bioElement.textContent =
-          profileData.bio || "This user hasn't written a bio yet.";
-      }
-
-      if (profileData.avatar?.url)
-        addToLocalStorage("avatarUrl", profileData.avatar.url);
-      form.remove();
-      alert("Profile updated!");
-    } catch (error) {
-      console.error("Error updating profile:", error);
-      alert("Could not update profile.");
-    }
-  });
-  container.appendChild(form);
-}
-
-async function loadProfile(profileImgElement) {
-  if (!userName || !token) return;
-
-  try {
-    showSpinner();
-    const response = await fetch(getSingleProfile(userName) + "?_followers=true", {
-      headers: getAuthHeaders(),
-    });
-    const { data } = await response.json();
-    profileData = data;
-
-    profileImgElement.src = data.avatar?.url || "../assets/smiley.jpg";
-    profileImgElement.alt = data.avatar?.alt || `${userName}'s profile picture`;
-
-    if (data.avatar?.url) localStorage.setItem("avatarUrl", data.avatar.url);
-
-    const bioElement = document.querySelector(".bio-text");
-    if (bioElement) {
-      bioElement.textContent =
-        data.bio || "This user hasn't written a bio yet.";
-    }
-    createFollowButtons(profileData);
-  } catch (error) {
-    console.error("Error fetching profile data", error);
-  } finally {
-    hideSpinner();
+    profileContainer.appendChild(createButton);
   }
 }
 
 async function loadPosts() {
   try {
-    console.log("Fetching posts from:", getPostsByProfile(userName));
-
     showSpinner();
-    console.log("userName right before fetch:", userName);
     const apiUrl = `${getPostsByProfile(userName)}?_author=true`;
     console.log("getPostsByProfile(userName):", getPostsByProfile(userName));
 
@@ -214,6 +110,46 @@ async function loadPosts() {
     if (postContainer) {
       postContainer.innerHTML = `<p>Error loading posts: ${error.message}</p>`;
     }
+  } finally {
+    hideSpinner();
+  }
+}
+
+loadPosts();
+
+async function loadProfile(profileImgElement) {
+  if (!userName || !token) return;
+
+  try {
+    showSpinner();
+    const response = await fetch(
+      getSingleProfile(userName) + "?_followers=true&_count=true",
+      {
+        headers: getAuthHeaders(),
+      }
+    );
+    const { data } = await response.json();
+    profileData = data;
+
+    profileImgElement.src = data.avatar?.url || "../assets/smiley.jpg";
+    profileImgElement.alt = data.avatar?.alt || `${userName}'s profile picture`;
+
+    if (data.avatar?.url) localStorage.setItem("avatarUrl", data.avatar.url);
+
+    const bioElement = document.querySelector(".bio-text");
+    if (bioElement) {
+      bioElement.textContent =
+        data.bio || "This user hasn't written a bio yet.";
+    }
+
+    const followersElement = document.getElementById("followers-count");
+    if (followersElement && data._count?.followers !== undefined) {
+      followersElement.textContent = `Followers: ${data._count.followers}`;
+    }
+
+    createFollowButtons(profileData, updateFollowersCount);
+  } catch (error) {
+    console.error("Error fetching profile data", error);
   } finally {
     hideSpinner();
   }

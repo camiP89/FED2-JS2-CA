@@ -7,6 +7,7 @@ import {
   NOROFF_API_KEY,
   ALL_PROFILES_ENDPOINT,
   getSingleProfile,
+  getProfileWithFollowers,
 } from "./constants.mjs";
 import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
 import { getFromLocalStorage } from "./utils.mjs";
@@ -251,7 +252,7 @@ export async function createPost(title, body, tags, mediaUrl, mediaAlt) {
 }
 
 export async function fetchPostsByProfile(userName) {
-  const url =`${API_BASE_URL}/social/profiles/${userName}/posts?_author=true&_comments=true&_reactions=true`;
+  const url = `${API_BASE_URL}/social/profiles/${userName}/posts?_author=true&_comments=true&_reactions=true`;
   try {
     showSpinner();
     const response = await fetch(url, {
@@ -290,6 +291,30 @@ export async function updatePostById(postId, postData) {
     return data.data;
   } catch (error) {
     console.error("Network or unexpected error updating post:");
+    throw error;
+  } finally {
+    hideSpinner();
+  }
+}
+
+export async function fetchProfileWithFollowers(userName) {
+  try {
+    showSpinner();
+    const response = await fetch(
+      `${getProfileWithFollowers}${userName}?_followers=true&_count=true`,
+      {
+        headers: getAuthHeaders(),
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error(`Failed to fetch profile: ${response.status}`);
+    }
+    const result = await response.json();
+    console.log("Fetched profile with followers:", result);
+    return result.data;
+  } catch (error) {
+    console.error("Error fetching profile with followers:", error.message);
     throw error;
   } finally {
     hideSpinner();

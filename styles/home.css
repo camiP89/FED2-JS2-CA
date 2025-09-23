@@ -1,11 +1,5 @@
 @import url('./variables.css');
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 .button-home {
   display: flex;
   justify-content: center;

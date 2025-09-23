@@ -34,3 +34,5 @@ export const searchProfiles = (query) =>
   `${API_BASE_URL}/social/profiles/search?q=${query}`;
 export const updateProfile = (username) =>
   `${API_BASE_URL}/social/profiles/${username}`;
+export const getProfileWithFollowers = (username) =>
+  `${API_BASE_URL}/social/profiles/${username}?_followers=true&_count=true`;

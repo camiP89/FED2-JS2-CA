@@ -1,9 +1,9 @@
 @import url("./variables.css");
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+.latest-posts {
+  padding-left: 30px;
+  color: var(--soft-white);
+  font-size: 1.2rem;
 }
 
 .post-thumbnail {
@@ -11,19 +11,21 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
+  max-width: 100%;
   min-height: 300px;
   padding: 15px;
   background-color: var(--orange);
-  border: solid 5px var(--black);
-  border-radius: 20px;
+  border: solid 3px var(--black);
+  border-radius: 5px;
   box-sizing: border-box;
 }
 
 #posts-container {
   display: grid;
-  grid-template-columns: 1fr;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 10px;
-  padding: 10px;
+  padding: 0 15px;
   margin: 0 auto;
   max-width: 100%;
   box-sizing: border-box;
@@ -46,39 +48,30 @@
   margin-top: 10px;
 }
 
-.create-post-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 246px;
-  height: 50px;
-  background-color: var(--orange);
-  color: var(--white);
-  text-decoration: none;
-  font-size: 1.2rem;
-  text-align: center;
-  font-weight: bold;
-  border-radius: 10px;
-  border: solid 3px var(--black);
-  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
-  cursor: pointer;
-  margin: 30px auto;
-}
-
 .thumbnail-image {
   width: 100%;
+  max-width: 100%;
   height: clamp(190px, 40vw, 250px);
   object-fit: cover;
   object-position: center;
-  border: solid 5px var(--black);
-  border-radius: 20px;
+  border: solid 3px var(--black);
+  border-radius: 5px;
   box-sizing: border-box;
 }
 
+.post-body {
+  color: var(--black);
+  font-size: 0.9rem;
+}
+
 .post-author {
+  text-align: center;
+  background-color: var(--off-black);
+  border: solid 3px var(--black);
+  padding: 10px;
   color: var(--white);
   text-transform: uppercase;
-  font-size: 1.2rem;
+  font-size: 1rem;
   font-weight: 600;
   text-decoration: underline;
 }
@@ -88,7 +81,5 @@
 }
 
 .post-date {
-  color: var(--black);
-  font-weight: 500;
-  font-size: 0.9rem;
+  display: none;
 }

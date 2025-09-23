@@ -1,12 +1,6 @@
 @import url("./variables.css");
 @import url("./post-feed-page.css");
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
 #search-input {
   padding: 10px;
   font-size: 1rem;

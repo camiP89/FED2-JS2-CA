@@ -12,7 +12,7 @@ export function createPostDetailsHtml(postData, isLoggedIn = false) {
 
   if (authorUserName) {
     authorElement.innerHTML = `
-    Profile: <a href="../profile/index.html?username=${encodeURIComponent(authorUserName)}">
+    View Profile: <a href="../profile/index.html?username=${encodeURIComponent(authorUserName)}">
       ${authorName}
     </a>
   `;

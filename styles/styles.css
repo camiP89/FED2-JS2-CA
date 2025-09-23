@@ -1,9 +1,7 @@
 @import url("./variables.css");
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
+html, body {
+  overflow-x: hidden;
 }
 
 body {
@@ -18,15 +16,16 @@ h1 {
   font-size: 1.3rem;
   text-align: center;
   text-transform: uppercase;
-  width: 100%;
+  max-width: 100%;
   font-weight: bold;
   padding: 10px 20px;
+  margin: 0 10px;
   border-bottom: solid 3px var(--black);
   height: auto;
 }
 
 .mobile-header i {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   color: var(--orange);
 }
 
@@ -42,8 +41,9 @@ nav,
 nav {
   position: absolute;
   background: var(--grey);
-  width: 100%;
-  left: 0px;
+  width: auto;
+  left: 0;
+  right: 0;
   top: 85px;
   z-index: 10;
 }
@@ -53,7 +53,7 @@ nav a {
   color: var(--white);
   text-decoration: none;
   font-size: 1rem;
-  font-weight: 700;
+  font-weight: 600;
   text-align: center;
   padding: 20px;
   border: solid 2px var(--orange);
@@ -70,10 +70,11 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  padding: 15px;
+  width: 100%;
   flex-wrap: wrap;
   background-color: var(--header-footer);
-  border-bottom: solid 2px var(--orange);
+  border-bottom: solid 4px var(--orange);
 }
 
 .user-info {
@@ -94,14 +95,14 @@ header {
 #logout-button {
   display: inline-block;
   padding: 5px 10px;
-  background-color: var(--orange);
-  border: solid 3px var(--white);
-  color: var(--white);
+  background-color: var(--soft-orange);
+  border: solid 2px var(--white);
+  color: var(--black);
   letter-spacing: 1px;
-  font-weight: 500;
+  font-weight: 700;
   font-size: 0.9rem;
   text-decoration: none;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
   margin: 0;
 }
@@ -130,17 +131,17 @@ header {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 40px;
-  background-color: var(--grey);
-  border: solid 3px var(--black);
-  color: var(--white);
+  height: 35px;
+  background-color: var(--soft-orange);
+  border: solid 3px var(--white);
+  color: var(--black);
   text-decoration: none;
   font-size: 1.1rem;
   text-align: center;
   font-weight: 600;
   letter-spacing: 1px;
-  text-transform:uppercase;
-  border-radius: 20px;
+  text-transform: uppercase;
+  border-radius: 5px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   margin: 0;

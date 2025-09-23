@@ -1,41 +1,74 @@
 @import url("./variables.css");
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
+@import url("./follow-unfollow.css");
 
 .profile-container {
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin: 20px;
+  margin: 0 10px;
+  padding-top: 20px;
+  background-color: var(--off-black);
 }
 
 .profile-avatar {
-  width: 150px;
-  height: 150px;
+  width: 200px;
+  height: 200px;
   border-radius: 50%;
   object-fit: cover;
-  border: 10px solid var(--orange);
+  border: 5px solid var(--orange);
 }
 
-.edit-profile-button,
-.create-post-button {
-  margin-top: 0.5rem;
-  padding: 0.5rem 1rem;
-  font-size: 0.9rem;
+.edit-profile-button {
+  margin: 0.5rem;
+  padding: 5px 10px;
+  font-size: 0.8rem;
   background: #333;
-  color: #fff;
-  border: none;
+  color: var(--white);
+  border: solid 2px var(--orange);
   border-radius: 6px;
   cursor: pointer;
 }
 
-.edit-profile-button:hover,
-.create-post-button:hover {
-  background: #555;
+.edit-profile-button:hover {
+  background: var(--orange);
+  color: var(--black);
+}
+
+.edit-profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+label {
+  color: var(--orange);
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+input,
+textarea {
+  padding: 5px;
+  margin-left: 5px;
+}
+
+.save-button {
+  background-color: var(--orange);
+  padding: 5px;
+  font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+  font-weight: 600;
+  margin: 10px 0;
+  border: none;
+}
+
+.bio-text {
+  font-size: 1.2rem;
+  padding: 20px;
+  color: var(--orange);
+  font-weight: 300;
+  text-align: center;
+  margin: 0 10px 10px 10px;
+  background-color: var(--off-black);
 }
 
 .post-thumbnail {
@@ -43,11 +76,12 @@
   flex-direction: column;
   justify-content: space-between;
   height: 100%;
+  width: 100%;
   min-height: 300px;
   padding: 15px;
-  background-color: var(--orange);
-  border: solid 5px var(--black);
-  border-radius: 20px;
+  background-color: var(--off-black);
+  border: solid 3px var(--orange);
+  border-radius: 5px;
   box-sizing: border-box;
 }
 
@@ -55,20 +89,31 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 10px;
-  padding: 10px;
-  margin: 20px;
+  padding: 0 10px;
   align-items: stretch;
 }
 
 .thumbnail-title {
   display: flex;
   justify-content: center;
-  font-size: 0.9rem;
-  color: var(--black);
-  font-weight: 700;
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 600;
   text-align: center;
   padding: 10px;
   text-decoration: none;
+}
+
+.post-author {
+  display: none;
+}
+
+.post-body,
+.post-author a,
+.post-date {
+  color: var(--soft-white);
+  font-weight: 400;
+  font-size: 0.9rem;
 }
 
 .post-action-buttons {
@@ -81,19 +126,23 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 246px;
-  height: 50px;
-  background-color: var(--orange);
+  height: auto;
+  padding: 5px 10px;
+  background-color: var(--soft-orange);
   color: var(--black);
   text-decoration: none;
-  font-size: 1.2rem;
   text-align: center;
   font-weight: bold;
-  border-radius: 10px;
-  border: solid 5px var(--black);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  margin: 30px auto;
+}
+
+.create-post-button {
+  font-size: 1.2rem;
+  margin: 15px 10px;
+  width: calc(100% - 20px);
+  border-radius: 5px;
+   border: solid 3px var(--black);
 }
 
 .thumbnail-image {
@@ -101,8 +150,8 @@
   height: clamp(190px, 40vw, 250px);
   object-fit: cover;
   object-position: center;
-  border: solid 5px var(--black);
-  border-radius: 20px;
+  border: solid 3px var(--orange);
+  border-radius: 5px;
   box-sizing: border-box;
 }
 
@@ -111,22 +160,18 @@
   flex: 1;
   justify-content: center;
   align-items: center;
-  height: 40px;
-  letter-spacing: 1px;
-  background-color: var(--black);
+  height: 30px;
+  letter-spacing: 1.2px;
+  background-color: var(--soft-orange);
   border: solid 2px var(--white);
-  color: var(--white);
+  color: var(--black);
+  text-transform: uppercase;
   text-decoration: none;
-  font-size: 0.8rem;
+  font-size: 0.9rem;
   text-align: center;
   font-weight: bold;
-  border-radius: 10px;
+  border-radius: 5px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
   margin: 0 5px;
-}
-
-.what-is-on-your-mind {
-  margin: 0;
-  text-align: center;
 }

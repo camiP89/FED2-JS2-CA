@@ -1,11 +1,5 @@
 @import url('./variables.css');
 
-*,
-*::before,
-*::after {
-    box-sizing: border-box;
-}
-
 .container {
   max-width: 100%;
   margin: 20px 20px;

@@ -11,7 +11,6 @@ export function createSinglePostHtml(
   postListItem.id = `post-${post.id}`;
 
   const authorName = post.author?.name || profileUserName || "Unknown Author";
-
   const loggedInUser = getFromLocalStorage("userName");
   const isOwnPost = loggedInUser === authorName;
 
@@ -42,11 +41,14 @@ export function createSinglePostHtml(
 
   const authorElement = document.createElement("p");
   authorElement.classList.add("post-author");
-  authorElement.innerHTML = `
-    By: <a href="../profile/index.html?username=${encodeURIComponent(authorName)}">
-          ${authorName}
-        </a>
-  `;
+  authorElement.textContent = `View Profile: ${authorName}`;
+  authorElement.style.cursor = "pointer";
+  authorElement.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.location.href = `../profile/index.html?username=${encodeURIComponent(authorName)}`;
+  });
+  
   contentContainer.appendChild(authorElement);
 
   if (post.created) {
