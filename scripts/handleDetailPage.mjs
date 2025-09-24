@@ -3,6 +3,7 @@ import { createPostDetailsHtml } from "./postDetailsHtml.mjs";
 import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
 import { createHeader } from "./header.mjs";
 import { getAuthHeaders } from "./fetchData.mjs";
+import { loadComments } from "./comments.mjs";
 
 createHeader();
 
@@ -62,6 +63,8 @@ export async function mainId() {
     const isLoggedIn = !!localStorage.getItem("accessToken");
     const userName = localStorage.getItem("userName");
 
+    const commentsContainerId = "comments-container";
+    loadComments(postData.id, commentsContainerId, isLoggedIn, userName);
   } catch (error) {
     console.error("Error fetching post details:", error);
     postDetailsContainer.innerHTML = "<p>Error loading post.</p>";

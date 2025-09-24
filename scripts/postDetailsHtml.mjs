@@ -52,9 +52,9 @@ export function createPostDetailsHtml(postData, isLoggedIn = false) {
   singlePostContainer.append(
     postTitle,
     postImage,
-    authorElement,
     postCreated,
-    postBody
+    postBody,
+     authorElement
   );
 
   if (tags?.length) {

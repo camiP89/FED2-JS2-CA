@@ -1,12 +1,15 @@
 @import url("./variables.css");
+@import url("./comments.css");
 
 .single-post-container {
-  background-color: var(--orange);
-  border: 4px solid var(--black);
+  background-color: var(--off-black);
+  border: 3px solid var(--orange);
+  border-radius: 5px;
   gap: 10px;
-  padding: 10px;
+  padding: 15px;
   align-items: stretch;
   margin: 20px;
+  color: var(--white);
 }
 
 .post-title {
@@ -19,9 +22,9 @@
   height: 200px;
   object-fit: cover;
   object-position: center;
-  border: solid 3px var(--black);
-  margin: 10px;
-  width: calc(100% - 20px);
+  border: solid 3px var(--orange);
+  border-radius: 5px;
+  margin-bottom: 10px;
 }
 
 .post-tags {
@@ -30,4 +33,21 @@
 
 .post-body {
   font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.post-author a {
+  color: var(--black);
+  text-decoration: none;
+}
+
+.post-author {
+  text-align: center;
+  background-color: var(--soft-orange);
+  border: solid 3px var(--orange);
+  padding: 10px;
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 0;
 }

@@ -320,3 +320,60 @@ export async function fetchProfileWithFollowers(userName) {
     hideSpinner();
   }
 }
+
+export async function fetchComments(postId) {
+  const response = await fetch(
+    `${API_BASE_URL}/social/posts/${postId}?_comments=true`,
+    {
+      headers: getAuthHeaders(),
+    }
+  );
+  if (!response.ok) throw new Error("Failed to fetch comments");
+  const data = await response.json();
+  return data.data?.comments || [];
+}
+
+export async function postComment(postId, body) {
+  try {
+    showSpinner();
+    const response = await fetch(
+      `${API_BASE_URL}/social/posts/${postId}/comment`,
+      {
+        method: "POST",
+        headers: getAuthHeaders(),
+        body: JSON.stringify({ body }),
+      }
+    );
+    const result = await response.json();
+    if (!response.ok) {
+      const message = result.errors?.[0]?.message || "Failed to post comment";
+      throw new Error("Failed to post comment");
+    }
+    return result.data;
+  } catch (error) {
+    console.error(errorData.errors?.[0]?.message || "Error posting comment:");
+    throw error;
+  } finally {
+    hideSpinner();
+  }
+}
+
+export async function deleteComment(postId, commentId) {
+  try {
+    showSpinner();
+    const response = await fetch(
+      `${API_BASE_URL}/social/posts/${postId}/comment/${commentId}`,
+      {
+        method: "DELETE",
+        headers: getAuthHeaders(),
+      }
+    );
+    if (!response.ok) throw new Error("Failed to delete comment");
+    return true;
+  } catch (error) {
+    console.error("Error deleting comment:", error.message);
+    throw error;
+  } finally {
+    hideSpinner();
+  }
+}

@@ -1,4 +1,3 @@
-import { deletePost } from "./deletePost.mjs";
 import { updatePostById, fetchSinglePostById } from "./fetchData.mjs";
 import { getFromLocalStorage } from "./utils.mjs";
 import { createHeader } from "./header.mjs";
@@ -87,32 +86,21 @@ publishButton.textContent = "Update Post";
 publishButton.classList.add("button");
 publishButton.setAttribute("aria-label", "Update this post");
 
-const deleteButton = document.createElement("button");
-deleteButton.type = "button";
-deleteButton.textContent = "Delete Post";
-deleteButton.classList.add("button");
-deleteButton.setAttribute("aria-label", "Delete this post");
+const cancelButton = document.createElement("button");
+cancelButton.type = "button";
+cancelButton.textContent = "Cancel Update";
+cancelButton.classList.add("button");
+cancelButton.setAttribute("aria-label", "Cancel this update");
 
-deleteButton.addEventListener("click", async () => {
-  if (confirm("Are you sure you want to delete this post?")) {
-    try {
-      showSpinner();
-      await deletePost(postId);
-      alert("Post deleted successfully!");
-
-      const loggedInUser = getFromLocalStorage("userName");
-      window.location.href = `../profile/index.html?username=${getFromLocalStorage("userName")}`;
-    } catch (error) {
-      console.error("Delete failed:", error);
-      alert("Failed to delete post.");
-    } finally {
-      hideSpinner();
-    }
+cancelButton.addEventListener("click", async () => {
+  if (confirm("Are you sure you want to cancel editing this post?")) {
+    const loggedInUser = getFromLocalStorage("userName");
+    window.location.href = `../profile/index.html?username=${getFromLocalStorage("userName")}`;
   }
 });
 
 editForm.appendChild(publishButton);
-editForm.appendChild(deleteButton);
+editForm.appendChild(cancelButton);
 container.appendChild(editForm);
 editPostsContainer.appendChild(container);
 
