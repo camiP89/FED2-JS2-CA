@@ -65,7 +65,7 @@ cancelButton.setAttribute('aria-label', 'Cancel creating new post');
 cancelButton.addEventListener("click", () => {
  const confirmCancel = confirm ("Are you sure you want to cancel this post?");
  if (confirmCancel) {
-  window.location.href = "../profile-page/index.html";
+  window.location.href = "../profile/index.html";
  }
 });
 

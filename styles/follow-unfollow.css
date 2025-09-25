@@ -26,7 +26,7 @@
 #followers-link,
 #following-link {
   color: var(--orange);
-  font-size: 0.8rem;
+  font-size: 0.9rem;
 }
 .followers-modal a,
 .following-modal a {
@@ -69,9 +69,13 @@
 
 .close-button {
   width: 100%;
-  padding: 5px 10px;
-  border: solid 2px var(--black);
+  padding: 10px;
+  border: solid 2px var(--white);
   border-radius: 5px;
   color: var(--white);
   background-color: var(--off-black);
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 1.2px;
 }

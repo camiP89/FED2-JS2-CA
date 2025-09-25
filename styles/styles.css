@@ -1,12 +1,14 @@
 @import url("./variables.css");
 
-html, body {
+html,
+body {
   overflow-x: hidden;
 }
 
 body {
   font-family: "Montserrat", Verdana, Geneva, Tahoma, sans-serif;
   background-color: var(--background-all);
+  padding-top: 80px;
 }
 
 h1 {
@@ -70,6 +72,10 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 999;
   padding: 15px;
   width: 100%;
   flex-wrap: wrap;
@@ -115,7 +121,7 @@ header {
 }
 
 .logo {
-  max-width: 250px;
+  max-width: 150px;
   height: auto;
   padding-top: 10px;
 }
@@ -188,6 +194,49 @@ header {
   border-top: 2px solid var(--black);
   border-bottom: 2px solid var(--black);
   margin-top: 50px;
+}
+
+.post-thumbnail {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  min-height: 300px;
+  padding: 15px;
+  background-color: var(--off-black);
+  border: solid 3px var(--orange);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.post-body,
+.post-author a,
+.post-date {
+  color: var(--soft-white);
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.thumbnail-image {
+  width: 100%;
+  height: clamp(190px, 40vw, 250px);
+  object-fit: cover;
+  object-position: center;
+  border: solid 3px var(--orange);
+  border-radius: 5px;
+  box-sizing: border-box;
+}
+
+.thumbnail-title {
+  display: flex;
+  justify-content: center;
+  font-size: 1rem;
+  color: var(--white);
+  font-weight: 600;
+  text-align: center;
+  padding: 10px;
+  text-decoration: none;
 }
 
 .logo-footer {

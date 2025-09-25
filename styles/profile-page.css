@@ -71,20 +71,6 @@ textarea {
   background-color: var(--off-black);
 }
 
-.post-thumbnail {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  height: 100%;
-  width: 100%;
-  min-height: 300px;
-  padding: 15px;
-  background-color: var(--off-black);
-  border: solid 3px var(--orange);
-  border-radius: 5px;
-  box-sizing: border-box;
-}
-
 #posts-container {
   display: grid;
   grid-template-columns: 1fr;
@@ -93,27 +79,8 @@ textarea {
   align-items: stretch;
 }
 
-.thumbnail-title {
-  display: flex;
-  justify-content: center;
-  font-size: 1rem;
-  color: var(--white);
-  font-weight: 600;
-  text-align: center;
-  padding: 10px;
-  text-decoration: none;
-}
-
 .post-author {
   display: none;
-}
-
-.post-body,
-.post-author a,
-.post-date {
-  color: var(--soft-white);
-  font-weight: 400;
-  font-size: 0.9rem;
 }
 
 .post-action-buttons {
@@ -143,16 +110,6 @@ textarea {
   width: calc(100% - 20px);
   border-radius: 5px;
   border: solid 3px var(--black);
-}
-
-.thumbnail-image {
-  width: 100%;
-  height: clamp(190px, 40vw, 250px);
-  object-fit: cover;
-  object-position: center;
-  border: solid 3px var(--orange);
-  border-radius: 5px;
-  box-sizing: border-box;
 }
 
 .edit-button,
