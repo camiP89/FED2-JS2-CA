@@ -2,10 +2,9 @@
   background-color: var(--off-black);
   border: 3px solid var(--orange);
   border-radius: 5px;
-  gap: 10px;
-  padding: 10px;
+  padding: 15px;
   align-items: stretch;
-  margin: 20px;
+  margin: 10px;
 }
 
 .comment-item {
@@ -13,7 +12,11 @@
   border: solid 2px var(--orange);
   border-radius: 5px;
   padding: 10px 15px;
-  margin: 10px;
+  margin-bottom: 15px;
+}
+
+.comment-item:last-child {
+  margin-bottom: 0;
 }
 
 .comments-list {
@@ -44,7 +47,7 @@
   resize: vertical;
   min-height: 60px;
   box-sizing: border-box;
-  width: calc(100% - 20px);
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -58,6 +61,8 @@
 .comment-body {
   margin: 0;
   font-size: 0.9rem;
+  color: var(--grey);
+  font-weight: 500;
 
 }
 
@@ -70,7 +75,7 @@
 
 .comment-form button {
   margin: 10px auto;
-  width: calc(100% - 20px);
+  width: 100%;
   background-color: var(--soft-orange);
   padding: 5px;
   border: solid 3px var(--white);
@@ -80,6 +85,7 @@
   color: var(--black);
   font-weight: 800;
   text-transform: uppercase;
+  margin-bottom: 0;
 }
 
 .no-comments {
