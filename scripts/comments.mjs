@@ -14,12 +14,30 @@ export async function loadComments(
   showSpinner();
 
   try {
+    const commentsListContainer = document.createElement("div");
+    commentsListContainer.classList.add("comments-list-container");
+    commentsContainer.appendChild(commentsListContainer);
+
+    let commentsFormContainer;
+    if (isLoggedIn) {
+      commentsFormContainer = document.createElement("div");
+      commentsFormContainer.classList.add("comment-form-container");
+      commentsContainer.appendChild(commentsFormContainer);
+    }
+
     const comments = await fetchComments(postId);
     console.log("Fetched comments:", comments);
-    renderComments(postId, commentsContainer, comments, isLoggedIn, userName);
+
+    renderComments(commentsListContainer, comments, isLoggedIn, userName);
 
     if (isLoggedIn) {
-      addCommentsForm(postId, commentsContainer, isLoggedIn, userName);
+      addCommentsForm(
+        postId,
+        commentsFormContainer,
+        commentsListContainer,
+        isLoggedIn,
+        userName
+      );
     }
   } catch (error) {
     console.error("Error loading comments:", error);
@@ -28,11 +46,12 @@ export async function loadComments(
     hideSpinner();
   }
 
-  function renderComments(postId, container, comments, isLoggedIn, userName) {
+  function renderComments(container, comments, isLoggedIn, userName) {
     container.innerHTML = "";
 
     if (!comments.length) {
-      container.innerHTML = '<p class="no-comments">No comments yet. Be the first to comment!</p>';
+      container.innerHTML =
+        '<p class="no-comments">No comments yet. Be the first to comment!</p>';
       return;
     }
 
@@ -73,7 +92,15 @@ export async function loadComments(
     container.appendChild(commentsList);
   }
 
-  function addCommentsForm(postId, container, isLoggedIn, userName) {
+  function addCommentsForm(
+    postId,
+    formContainer,
+    commentsListContainer,
+    isLoggedIn,
+    userName
+  ) {
+    formContainer.innerHTML = "";
+
     const form = document.createElement("form");
     form.classList.add("comment-form");
 
@@ -88,7 +115,7 @@ export async function loadComments(
 
     form.appendChild(textarea);
     form.appendChild(submitButton);
-    container.appendChild(form);
+    formContainer.appendChild(form);
 
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
@@ -102,8 +129,7 @@ export async function loadComments(
 
         const updatedComments = await fetchComments(postId);
         renderComments(
-          postId,
-          container,
+          commentsListContainer,
           updatedComments,
           isLoggedIn,
           userName

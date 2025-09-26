@@ -1,6 +1,5 @@
-import { API_BASE_URL } from "./constants.mjs";
 import { createPostsHtml } from "./displayPosts.mjs";
-import { fetchAllPosts, getAuthHeaders } from "./fetchData.mjs";
+import { fetchAllPosts } from "./fetchData.mjs";
 import { showSpinner, hideSpinner } from './loadingSpinner.mjs';
 import { createHeader } from "./header.mjs";
 

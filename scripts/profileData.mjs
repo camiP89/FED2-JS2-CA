@@ -1,6 +1,12 @@
 import { API_BASE_URL, getSingleProfile } from "./constants.mjs";
 import { getAuthHeaders } from "./fetchData.mjs";
 
+
+/**
+ * Fetch a single profile by username
+ * @param {string} username - The profile's username
+ * @returns {Promise<Object>} The profile data
+ */
 export async function fetchProfile(username) {
   const response = await fetch(
     `${getSingleProfile(username)}?_followers=true&_following=true&_count=true`,

@@ -37,17 +37,11 @@ npm run dev
 
 - **GitHub Repository:** [https://github.com/camiP89/FED2-JS2-CA](https://github.com/camiP89/FED2-JS2-CA)
 
-## Register a New User
+## Register a New User (Restrictions)
 
-Use the following JSON structure when registering via the API:
-
-```json
-{
-  "name": "my_username",                  // Required - Only letters, numbers, and underscores allowed
-  "email": "first.last@stud.noroff.no",   // Required - Must be a valid stud.noroff.no email
-  "password": "your_password_here",       // Required - At least 8 characters
-  "avatar": {
-    "url": "https://img.service.com/avatar.jpg" // Optional - Must be a valid URL
-  }
-}
-
+The name value must not contain punctuation symbols apart from underscore (_).
+The email value must be a valid stud.noroff.no email address.
+The password value must be at least 8 characters.
+If set, the bio value must be less than 160 characters.
+If set, the avatar.url value must be a valid and accessible URL.
+If set, the avatar.alt value must be less than 120 characters. Defaults to empty string (""). Requires avatar.url to be set.

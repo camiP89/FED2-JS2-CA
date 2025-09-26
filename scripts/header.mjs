@@ -34,7 +34,7 @@ export function createHeader() {
       logoutButton.addEventListener("click", () => {
         localStorage.clear();
         alert("You have logged out! Redirecting to login...");
-        location.href = "/account/login.html";
+        location.href = "/index.html";
       });
     }
   }
