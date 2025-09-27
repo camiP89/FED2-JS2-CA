@@ -1,4 +1,4 @@
-import { loginUser } from "./fetchData.mjs";
+import { loginUser } from "./authApi.mjs";
 import { createHeader } from "./header.mjs";
 import { addToLocalStorage } from "./utils.mjs";
 

@@ -1,13 +1,10 @@
-import { fetchProfile, updateProfile } from "./profileData.mjs";
+import { fetchProfile, updateProfile } from "./profileApi.mjs";
 import { renderProfile, toggleEditForm } from "./profileView.mjs";
-import { getAuthHeaders } from "./fetchData.mjs";
+import { getAuthHeaders } from "./authApi.mjs";
 import { getFromLocalStorage } from "./utils.mjs";
 import { createHeader } from "./header.mjs";
 import { createPostsHtml } from "./displayPosts.mjs";
-import {
-  getSingleProfile,
-  getPostsByProfile,
-} from "./constants.mjs";
+import { getSingleProfile, getPostsByProfile } from "./constants.mjs";
 import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
 import { updateFollowCounts } from "./followingCount.mjs";
 import { createFollowButtons } from "./CreateFollowingButtons.mjs";
@@ -22,6 +19,8 @@ const token = getFromLocalStorage("accessToken");
 const userName = viewedUser || loggedInUser;
 const isLoggedIn = !!token;
 const isOwner = userName === loggedInUser;
+
+let profileData;
 
 const heading = document.querySelector("h1");
 if (heading) {
@@ -45,7 +44,7 @@ if (heading) {
   }
   heading.insertAdjacentElement("afterend", profileContainer);
 
-  const profileData = await fetchProfile(userName);
+  profileData = await fetchProfile(userName);
   renderProfile(profileData, profileImgElement, bioElement, userName);
   createFollowButtons(profileData);
   updateFollowCounts(profileData);

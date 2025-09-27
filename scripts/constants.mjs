@@ -26,13 +26,13 @@ export const getSingleProfile = (username) =>
   `${API_BASE_URL}/social/profiles/${username}`;
 export const getPostsByProfile = (username) =>
   `${API_BASE_URL}/social/profiles/${username}/posts`;
-export const followProfile = (username) =>
+export const FOLLOW_PROFILE_ENDPOINT = (username) =>
   `${API_BASE_URL}/social/profiles/${username}/follow`;
-export const unfollowProfile = (username) =>
+export const UNFOLLOW_PROFILE_ENDPOINT = (username) =>
   `${API_BASE_URL}/social/profiles/${username}/unfollow`;
 export const searchProfiles = (query) =>
   `${API_BASE_URL}/social/profiles/search?q=${query}`;
-export const updateProfile = (username) =>
+export const updateProfileUrl = (username) =>
   `${API_BASE_URL}/social/profiles/${username}`;
 export const getProfileWithFollowers = (username) =>
   `${API_BASE_URL}/social/profiles/${username}?_followers=true&_count=true`;

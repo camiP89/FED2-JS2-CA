@@ -7,7 +7,7 @@ export function createPostDetailsHtml(postData, isLoggedIn = false) {
   const authorName = author?.name ?? "Unknown";
   const authorUserName = author?.name ?? null;
 
-  const authorElement =document.createElement("p");
+  const authorElement = document.createElement("p");
   authorElement.classList.add("post-author");
 
   if (authorUserName) {
@@ -54,7 +54,7 @@ export function createPostDetailsHtml(postData, isLoggedIn = false) {
     postImage,
     postCreated,
     postBody,
-     authorElement
+    authorElement
   );
 
   if (tags?.length) {

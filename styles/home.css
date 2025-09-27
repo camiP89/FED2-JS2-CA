@@ -1,10 +1,11 @@
-@import url('./variables.css');
+@import url("./variables.css");
 
 .button-home {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 90%;
+  max-width: 400px;
   height: 40px;
   background-color: var(--orange);
   border: solid 3px var(--black);
@@ -16,6 +17,10 @@
   border-radius: 10px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   cursor: pointer;
-  margin: 40px 60px;
-  width: calc(100% - 120px);
+  margin: 30px auto;
+}
+
+.button-home:hover {
+  background-color: var(--black);
+  color: var(--off-white);
 }

@@ -1,4 +1,4 @@
-import { createPost } from "./fetchData.mjs";
+import { createPost } from "./postsApi.mjs";
 import { createHeader } from "./header.mjs";
 import { hideSpinner, showSpinner } from "./loadingSpinner.mjs";
 
@@ -21,8 +21,8 @@ postForm.classList.add("form");
 const postFields = [
   { label: "Post-Title", id: "post-title", type: "text", placeholder: "Enter title", required: true },
   { label: "Post-Content", id: "post-content", type: "text", placeholder: "Enter content", required: true },
-  { label: "Image URL", id: "image-url", type: "text", placeholder: "Enter Image URL", required: true },
-  { label: "Image Alt Text", id: "image-alt-text", type: "text", placeholder: "Enter Image Alt Text", required: true },
+  { label: "Image URL", id: "image-url", type: "text", placeholder: "Enter Image URL", required: false },
+  { label: "Image Alt Text", id: "image-alt-text", type: "text", placeholder: "Enter Image Alt Text", required: false },
   { label: "Tags (Separate by commas)", id: "tags", type: "text", placeholder: "Enter Tags", required: true },
 ];
 
@@ -80,8 +80,8 @@ postForm.addEventListener("submit", async (e) => {
 
   const postTitle = document.getElementById("post-title").value.trim();
   const postContent = document.getElementById("post-content").value.trim();
-  const imageUrl = document.getElementById("image-url").value.trim();
-  const imageAltText = document.getElementById("image-alt-text").value.trim();
+  const imageUrl = document.getElementById("image-url").value.trim() || null;
+  const imageAltText = document.getElementById("image-alt-text").value.trim() || null;
   const tags = document.getElementById("tags").value
   .split(",")
   .map(tag => tag.trim())

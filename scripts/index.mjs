@@ -1,9 +1,10 @@
 import { createHeader } from "./header.mjs";
+import { getFromLocalStorage } from "./utils.mjs";
 
 createHeader();
 
 document.addEventListener("DOMContentLoaded", () => {
-  const token = localStorage.getItem("accessToken");
+  const token = getFromLocalStorage("accessToken");
 
   const authButtons = document.getElementById("auth-buttons");
   const isLoggedInActions = document.getElementById("logged-in-actions");

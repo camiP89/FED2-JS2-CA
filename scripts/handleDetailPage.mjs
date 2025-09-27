@@ -2,7 +2,7 @@ import { API_BASE_URL } from "./constants.mjs";
 import { createPostDetailsHtml } from "./postDetailsHtml.mjs";
 import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
 import { createHeader } from "./header.mjs";
-import { getAuthHeaders } from "./fetchData.mjs";
+import { getAuthHeaders } from "./authApi.mjs";
 import { loadComments } from "./comments.mjs";
 
 createHeader();

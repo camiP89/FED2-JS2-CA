@@ -3,6 +3,7 @@
 html,
 body {
   overflow-x: hidden;
+  height: 100%;
 }
 
 body {
@@ -344,5 +345,23 @@ header {
   nav a:hover,
   nav a:focus {
     text-decoration: underline;
+  }
+}
+
+@media (min-width: 600px) {
+  main {
+    margin: 0 10px;
+  }
+}
+
+@media (min-width: 750px) {
+  main {
+    margin: 0 50px;
+  }
+}
+
+@media (min-width: 900px) {
+  main {
+    margin: 0 100px;
   }
 }

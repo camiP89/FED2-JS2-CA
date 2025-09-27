@@ -1,10 +1,12 @@
+import { getFromLocalStorage } from "./utils.mjs";
+
 export function createHeader() {
   const navContainer = document.getElementById("nav-container");
   const welcomeText = document.getElementById("welcome-text");
   const logoutButton = document.getElementById("logout-button");
 
-  const userName = localStorage.getItem("userName");
-  const token = localStorage.getItem("accessToken");
+  const userName = getFromLocalStorage("userName");
+  const token = getFromLocalStorage("accessToken");
 
   if (navContainer) {
     navContainer.innerHTML = `

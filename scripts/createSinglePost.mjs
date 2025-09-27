@@ -1,4 +1,4 @@
-import { deletePost } from "./deletePost.mjs";
+import { deletePost } from "./postsApi.mjs";
 import { getFromLocalStorage } from "./utils.mjs";
 
 export function createSinglePostHtml(
@@ -48,7 +48,7 @@ export function createSinglePostHtml(
     e.stopPropagation();
     window.location.href = `../profile/index.html?username=${encodeURIComponent(authorName)}`;
   });
-  
+
   contentContainer.appendChild(authorElement);
 
   if (post.created) {

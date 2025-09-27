@@ -1,7 +1,7 @@
 import { getFromLocalStorage } from "./utils.mjs";
-import { followProfile, unfollowProfile } from "./followUnfollow.mjs";
+import { followProfile, unfollowProfile } from "./profileApi.mjs";
 import { updateFollowCounts } from "./followingCount.mjs";
-import { fetchProfile } from "./profileData.mjs";
+import { fetchProfile } from "./profileApi.mjs";
 
 export function createFollowButtons(profileData) {
   const container = document.getElementById("follow-button-container");

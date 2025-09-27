@@ -1,4 +1,4 @@
-import { updatePostById, fetchSinglePostById } from "./fetchData.mjs";
+import { updatePostById, fetchSinglePostById } from "./postsApi.mjs";
 import { getFromLocalStorage } from "./utils.mjs";
 import { createHeader } from "./header.mjs";
 import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";

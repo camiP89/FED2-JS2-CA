@@ -1,4 +1,4 @@
-import { registerUser } from "./fetchData.mjs";
+import { registerUser } from "./authApi.mjs";
 import { createHeader } from "./header.mjs";
 
 createHeader();
