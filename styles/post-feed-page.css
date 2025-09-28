@@ -49,3 +49,16 @@
 .delete-button {
   display: none;
 }
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  margin: 30px 0 60px;
+}
+
+#load-more-button {
+  width: calc(100% - 30px);
+  background-color: var(--off-black);
+  color: var(--orange);
+  border-color: var(--orange);
+}

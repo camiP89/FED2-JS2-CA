@@ -25,19 +25,14 @@ export function fetchSinglePostById(postId) {
  * @param {string} Optional image Alt text
  * @returns { Promise<Object}
  */
-export function createPost(
-  title,
-  body,
-  tags = [],
-  mediaUrl,
-  mediaAlt) {
+export function createPost(title, body, tags = [], mediaUrl, mediaAlt) {
   const url = `${API_BASE_URL}/social/posts`;
 
   const postData = {
     title,
     body,
     tags,
-      ...(mediaUrl ? {media: { url: mediaUrl, alt: mediaAlt || "" } } : {}),
+    ...(mediaUrl ? { media: { url: mediaUrl, alt: mediaAlt || "" } } : {}),
   };
 
   return fetchData(url, {
@@ -73,3 +68,4 @@ export async function deletePost(postId) {
 
   return true;
 }
+
