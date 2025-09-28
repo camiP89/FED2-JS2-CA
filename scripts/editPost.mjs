@@ -40,14 +40,14 @@ const postFields = [
     id: "image-url",
     type: "text",
     placeholder: "Enter Image URL",
-    required: true,
+    required: false,
   },
   {
     label: "Image Alt Text",
     id: "image-alt-text",
     type: "text",
     placeholder: "Enter Image Alt Text",
-    required: true,
+    required: false,
   },
   {
     label: "Tags (Separate by commas)",
@@ -126,19 +126,21 @@ async function populateForm() {
 editForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-  const updatePost = {
-    title: document.getElementById("post-title").value.trim(),
-    body: document.getElementById("post-content").value.trim(),
-    tags: document
+    const title = document.getElementById("post-title").value.trim();
+    const body = document.getElementById("post-content").value.trim();
+    const tags = document
       .getElementById("tags")
       .value.split(",")
       .map((tag) => tag.trim())
-      .filter(Boolean),
-    media: {
-      url: document.getElementById("image-url").value.trim(),
-      alt: document.getElementById("image-alt-text").value.trim(),
-    },
-  };
+      .filter(Boolean);
+
+
+     const mediaUrl = document.getElementById("image-url").value.trim();
+      const mediaAlt = document.getElementById("image-alt-text").value.trim();
+      const media = mediaUrl || mediaAlt ? { url: mediaUrl, alt: mediaAlt } : undefined;
+
+      const updatePost = { title, body, tags };
+      if (media) updatePost.media = media;
 
   try {
     showSpinner();
@@ -152,5 +154,6 @@ editForm.addEventListener("submit", async (e) => {
     hideSpinner();
   }
 });
+
 
 populateForm();
