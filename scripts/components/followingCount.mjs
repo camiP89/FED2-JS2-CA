@@ -19,7 +19,6 @@ export function updateFollowCounts(profileData) {
     .getElementById("followers-link")
     .addEventListener("click", async (e) => {
       e.preventDefault();
-      console.log("Followers data:", profileData.followers);
       showFollowersModal(profileData.followers);
     });
 
@@ -27,7 +26,6 @@ export function updateFollowCounts(profileData) {
     .getElementById("following-link")
     .addEventListener("click", async (e) => {
       e.preventDefault();
-      console.log("Followers data:", profileData.following);
       showFollowingModal(profileData.following);
     });
 }

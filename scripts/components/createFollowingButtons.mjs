@@ -8,17 +8,13 @@ export function createFollowButtons(profileData) {
   container.innerHTML = "";
 
   const loggedInUser = getFromLocalStorage("userName");
-  console.log("Logged in user:", loggedInUser);
-  console.log("Profile data at start:", profileData);
   if (!loggedInUser || loggedInUser === profileData.name) return;
 
   profileData.followers = profileData.followers || [];
-  console.log("Initial followers:", profileData.followers);
 
   const isFollowing = profileData.followers.some(
     (follower) => follower.name === loggedInUser
   );
-  console.log("Is following at start:", isFollowing);
 
   const followButton = document.createElement("button");
   followButton.textContent = "Follow";
@@ -34,7 +30,6 @@ export function createFollowButtons(profileData) {
   container.appendChild(unfollowButton);
 
   followButton.addEventListener("click", async () => {
-    console.log("Follow button clicked");
     try {
       await followProfile(profileData.name);
       const freshProfile = await fetchProfile(profileData.name);
@@ -42,15 +37,12 @@ export function createFollowButtons(profileData) {
       updateFollowCounts(freshProfile);
       followButton.style.display = "none";
       unfollowButton.style.display = "inline-block";
-      console.log("Updated followers after follow:", profileData.followers);
-      console.log("Is following after follow:", isFollowing);
     } catch (error) {
       alert(`Failed to follow user: ${error.message}`);
     }
   });
 
   unfollowButton.addEventListener("click", async () => {
-    console.log("Follow button clicked");
     try {
       await unfollowProfile(profileData.name);
       const freshProfile = await fetchProfile(profileData.name);

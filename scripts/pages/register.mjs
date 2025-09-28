@@ -84,7 +84,6 @@ registrationForm.addEventListener("submit", async (event) => {
 
   try {
     const result = await registerUser(name, email, password, avatarUrl);
-    console.log("User registered:", result);
 
     alert("Registration successful! Redirecting to login...");
     window.location.href = "../account/login.html";

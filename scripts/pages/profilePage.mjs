@@ -80,7 +80,6 @@ async function loadPosts() {
   try {
     showSpinner();
     const apiUrl = `${getPostsByProfile(userName)}?_author=true`;
-    console.log("getPostsByProfile(userName):", getPostsByProfile(userName));
 
     const response = await fetch(
       `${getPostsByProfile(userName)}?_author=true`,

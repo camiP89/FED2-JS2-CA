@@ -30,7 +30,6 @@ export async function loadComments(
     }
 
     const comments = await fetchComments(postId);
-    console.log("Fetched comments:", comments);
 
     renderComments(commentsListContainer, comments, isLoggedIn, userName);
 
