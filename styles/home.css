@@ -22,5 +22,5 @@
 
 .button-home:hover {
   background-color: var(--black);
-  color: var(--white);
+  color: var(--orange);
 }
