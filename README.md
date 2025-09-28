@@ -1,5 +1,7 @@
 # FED2-JS2-CA - CHATTA LINKS
 
+![A screenshot of the homepage of JS2-CA](assets/chatta-links-screenshot.png)
+
 A Front-End social media web application built as part of the JavaScript 2 course Assignment. This project demonstrates modern JavaScript skills, ES6 modules, and API integration by allowing users to create and interact with posts in real time.
 
 ## FEATURES
