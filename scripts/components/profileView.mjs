@@ -1,4 +1,4 @@
-import { addToLocalStorage } from "./utils.mjs";
+import { addToLocalStorage } from "../utils/utils.mjs";
 
 /**
  * Render the profile image and bio.
@@ -6,7 +6,12 @@ import { addToLocalStorage } from "./utils.mjs";
  * @param {HTMLElement} profileImgElement - The <img> element for avatar.
  * @param {HTMLElement} bioElement - The element to show bio text.
  */
-export function renderProfile(profileData, profileImgElement, bioElement, userName) {
+export function renderProfile(
+  profileData,
+  profileImgElement,
+  bioElement,
+  userName
+) {
   profileImgElement.src = profileData.avatar?.url || "../assets/smiley.jpg";
   profileImgElement.alt =
     profileData.avatar?.alt || `${userName}'s profile picture`;

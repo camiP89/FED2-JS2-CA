@@ -1,4 +1,4 @@
-import { createSinglePostHtml } from "./createSinglePost.mjs";
+import { createSinglePostHtml } from "../components/createSinglePost.mjs";
 
 export function createPostsHtml(
   posts,

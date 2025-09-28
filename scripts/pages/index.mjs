@@ -1,5 +1,5 @@
-import { createHeader } from "./header.mjs";
-import { getFromLocalStorage } from "./utils.mjs";
+import { createHeader } from "../components/header.mjs";
+import { getFromLocalStorage } from "../utils/utils.mjs";
 
 createHeader();
 

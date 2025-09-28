@@ -1,5 +1,9 @@
-import { fetchComments, postComment, deleteComment } from "./commentsApi.mjs";
-import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
+import {
+  fetchComments,
+  postComment,
+  deleteComment,
+} from "../api/commentsApi.mjs";
+import { showSpinner, hideSpinner } from "../components/loadingSpinner.mjs";
 
 export async function loadComments(
   postId,

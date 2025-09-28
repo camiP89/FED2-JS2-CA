@@ -1,9 +1,9 @@
-import { API_BASE_URL } from "./constants.mjs";
-import { createPostDetailsHtml } from "./postDetailsHtml.mjs";
-import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
-import { createHeader } from "./header.mjs";
-import { getAuthHeaders } from "./authApi.mjs";
-import { loadComments } from "./comments.mjs";
+import { API_BASE_URL } from "../constants/constants.mjs";
+import { createPostDetailsHtml } from "../components/postDetailsHtml.mjs";
+import { showSpinner, hideSpinner } from "../components/loadingSpinner.mjs";
+import { createHeader } from "../components/header.mjs";
+import { getAuthHeaders } from "../api/authApi.mjs";
+import { loadComments } from "../components/comments.mjs";
 
 createHeader();
 

@@ -1,7 +1,7 @@
-import { API_BASE_URL } from "./constants.mjs";
-import { getAuthHeaders } from "./authApi.mjs";
-import { fetchData } from "./apiFetch.mjs";
-import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
+import { API_BASE_URL } from "../constants/constants.mjs";
+import { getAuthHeaders } from "../api/authApi.mjs";
+import { fetchData } from "../api/apiFetch.mjs";
+import { showSpinner, hideSpinner } from "../components/loadingSpinner.mjs";
 
 export async function fetchComments(postId) {
   try {

@@ -1,13 +1,13 @@
-import { fetchProfile, updateProfile } from "./profileApi.mjs";
-import { renderProfile, toggleEditForm } from "./profileView.mjs";
-import { getAuthHeaders } from "./authApi.mjs";
-import { getFromLocalStorage } from "./utils.mjs";
-import { createHeader } from "./header.mjs";
-import { createPostsHtml } from "./displayPosts.mjs";
-import { getSingleProfile, getPostsByProfile } from "./constants.mjs";
-import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
-import { updateFollowCounts } from "./followingCount.mjs";
-import { createFollowButtons } from "./CreateFollowingButtons.mjs";
+import { fetchProfile, updateProfile } from "../api/profileApi.mjs";
+import { renderProfile, toggleEditForm } from "../components/profileView.mjs";
+import { getAuthHeaders } from "../api/authApi.mjs";
+import { getFromLocalStorage } from "../utils/utils.mjs";
+import { createHeader } from "../components/header.mjs";
+import { createPostsHtml } from "../components/displayPosts.mjs";
+import { getSingleProfile, getPostsByProfile } from "../constants/constants.mjs";
+import { showSpinner, hideSpinner } from "../components/loadingSpinner.mjs";
+import { updateFollowCounts } from "../components/followingCount.mjs";
+import { createFollowButtons } from "../components/createFollowingButtons.mjs";
 
 createHeader();
 

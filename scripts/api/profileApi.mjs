@@ -6,8 +6,8 @@ import {
   UNFOLLOW_PROFILE_ENDPOINT,
   getProfileWithFollowers,
   getPostsByProfile,
-} from "./constants.mjs";
-import { fetchData } from "./apiFetch.mjs";
+} from "../constants/constants.mjs";
+import { fetchData } from "../api/apiFetch.mjs";
 
 export function fetchAllProfiles() {
   return fetchData(ALL_PROFILES_ENDPOINT);
@@ -25,7 +25,9 @@ export function fetchProfile(username) {
 }
 
 export function fetchPostsByProfile(userName) {
-  return fetchData(`${getPostsByProfile(userName)}?_author=true&_comments=true`);
+  return fetchData(
+    `${getPostsByProfile(userName)}?_author=true&_comments=true`
+  );
 }
 
 export function updateProfile(username, avatarUrl, bio) {

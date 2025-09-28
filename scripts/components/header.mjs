@@ -1,4 +1,4 @@
-import { getFromLocalStorage } from "./utils.mjs";
+import { getFromLocalStorage } from "../utils/utils.mjs";
 
 export function createHeader() {
   const navContainer = document.getElementById("nav-container");

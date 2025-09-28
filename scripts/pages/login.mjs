@@ -1,6 +1,6 @@
-import { loginUser } from "./authApi.mjs";
-import { createHeader } from "./header.mjs";
-import { addToLocalStorage } from "./utils.mjs";
+import { loginUser } from "../api/authApi.mjs";
+import { createHeader } from "../components/header.mjs";
+import { addToLocalStorage } from "../utils/utils.mjs";
 
 createHeader();
 

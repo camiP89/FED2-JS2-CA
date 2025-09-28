@@ -1,5 +1,5 @@
-import { getAuthHeaders } from "./authApi.mjs";
-import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
+import { getAuthHeaders } from "../api/authApi.mjs";
+import { showSpinner, hideSpinner } from "../components/loadingSpinner.mjs";
 
 export async function fetchData(url, options = {}) {
   try {

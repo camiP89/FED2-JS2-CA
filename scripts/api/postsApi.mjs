@@ -2,9 +2,9 @@ import {
   ALL_POSTS_ENDPOINT,
   API_BASE_URL,
   getSinglePost,
-} from "./constants.mjs";
-import { fetchData } from "./apiFetch.mjs";
-import { getAuthHeaders } from "./authApi.mjs";
+} from "../constants/constants.mjs";
+import { fetchData } from "../api/apiFetch.mjs";
+import { getAuthHeaders } from "../api/authApi.mjs";
 
 export async function fetchAllPosts() {
   return fetchData(
@@ -68,4 +68,3 @@ export async function deletePost(postId) {
 
   return true;
 }
-

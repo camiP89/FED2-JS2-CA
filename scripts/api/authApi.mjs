@@ -2,10 +2,10 @@ import {
   REGISTER_ENDPOINT,
   LOGIN_ENDPOINT,
   NOROFF_API_KEY,
-} from "./constants.mjs";
-import { fetchData } from "./apiFetch.mjs";
-import { getFromLocalStorage, addToLocalStorage } from "./utils.mjs";
-import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
+} from "../constants/constants.mjs";
+import { fetchData } from "../api/apiFetch.mjs";
+import { getFromLocalStorage, addToLocalStorage } from "../utils/utils.mjs";
+import { showSpinner, hideSpinner } from "../components/loadingSpinner.mjs";
 
 /**
  * Get headers for authenticated requests

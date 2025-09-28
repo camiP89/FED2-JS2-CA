@@ -1,7 +1,7 @@
-import { updatePostById, fetchSinglePostById } from "./postsApi.mjs";
-import { getFromLocalStorage } from "./utils.mjs";
-import { createHeader } from "./header.mjs";
-import { showSpinner, hideSpinner } from "./loadingSpinner.mjs";
+import { updatePostById, fetchSinglePostById } from "../api/postsApi.mjs";
+import { getFromLocalStorage } from "../utils/utils.mjs";
+import { createHeader } from "../components/header.mjs";
+import { showSpinner, hideSpinner } from "../components/loadingSpinner.mjs";
 
 createHeader();
 
@@ -126,21 +126,21 @@ async function populateForm() {
 editForm.addEventListener("submit", async (e) => {
   e.preventDefault();
 
-    const title = document.getElementById("post-title").value.trim();
-    const body = document.getElementById("post-content").value.trim();
-    const tags = document
-      .getElementById("tags")
-      .value.split(",")
-      .map((tag) => tag.trim())
-      .filter(Boolean);
+  const title = document.getElementById("post-title").value.trim();
+  const body = document.getElementById("post-content").value.trim();
+  const tags = document
+    .getElementById("tags")
+    .value.split(",")
+    .map((tag) => tag.trim())
+    .filter(Boolean);
 
+  const mediaUrl = document.getElementById("image-url").value.trim();
+  const mediaAlt = document.getElementById("image-alt-text").value.trim();
+  const media =
+    mediaUrl || mediaAlt ? { url: mediaUrl, alt: mediaAlt } : undefined;
 
-     const mediaUrl = document.getElementById("image-url").value.trim();
-      const mediaAlt = document.getElementById("image-alt-text").value.trim();
-      const media = mediaUrl || mediaAlt ? { url: mediaUrl, alt: mediaAlt } : undefined;
-
-      const updatePost = { title, body, tags };
-      if (media) updatePost.media = media;
+  const updatePost = { title, body, tags };
+  if (media) updatePost.media = media;
 
   try {
     showSpinner();
@@ -154,6 +154,5 @@ editForm.addEventListener("submit", async (e) => {
     hideSpinner();
   }
 });
-
 
 populateForm();

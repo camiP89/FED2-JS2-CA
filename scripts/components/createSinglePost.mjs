@@ -1,5 +1,5 @@
-import { deletePost } from "./postsApi.mjs";
-import { getFromLocalStorage } from "./utils.mjs";
+import { deletePost } from "../api/postsApi.mjs";
+import { getFromLocalStorage } from "../utils/utils.mjs";
 
 export function createSinglePostHtml(
   post,

@@ -1,5 +1,5 @@
-import { registerUser } from "./authApi.mjs";
-import { createHeader } from "./header.mjs";
+import { registerUser } from "../api/authApi.mjs";
+import { createHeader } from "../components/header.mjs";
 
 createHeader();
 
